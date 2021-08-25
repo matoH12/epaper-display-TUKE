@@ -28,13 +28,19 @@ Nastavenie vystupu:
    
    
 v cykle ptrebne nastavit podmienku 
+
+
 for row in reader:
     i = i + 1
     if row["Organizer"] == "miestnostx@tuke.sk":   - specifikuje sa email teda kto je vlastnik kalendara
     
     
     
+    
+    
 Definovanie adresy CSV teda jeden kalendar = jedna miestnost
+
+
 
 url = 'http://trolik.mhasin.eu/OUT/calendar.csv'
 r = requests.get(url, allow_redirects=True)    
