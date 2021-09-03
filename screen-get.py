@@ -2,19 +2,21 @@ import csv
 import logging
 from utility import update_svg, configure_logging
 import requests
+import os
 
 configure_logging()
 
-degrees = "°C"
+if os.path.exists("calendar.csv"):
+  os.remove("calendar.csv")
 
-url = 'http://trolik.mhasin.eu/OUT/calendar.csv'
+url = 'http://admin.ad.tuke.sk/calendardump/n3.15@room.tuke.sk.csv'
 r = requests.get(url, allow_redirects=True)
 
 open('calendar.csv', 'wb').write(r.content)
 
 
 csvfile = open('calendar.csv', 'r', encoding='utf-8')
-jsonfile = open('file.json', 'w')
+
 i = 0
 starttime1 = 0
 starttime2 = 0
@@ -36,7 +38,7 @@ fieldnames = ("StartTime","EndTime","Duration","Type","Subject","Location","Orga
 reader = csv.DictReader( csvfile, fieldnames)
 for row in reader:
     i = i + 1
-    if row["Organizer"] == "martin.havrilla@tuke.sk":
+    if row["Organizer"] == "pavol.dzurnak@tuke.sk":
         if i == 3:
            starttime1 = row["StartTime"]
            EndTime1 = row["EndTime"]
